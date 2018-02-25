@@ -1,7 +1,7 @@
 #### 1.	Given two strings s and t, determine whether some anagram of t is a substring of s. For example: if s = "udacity" and t = "ad", then the function returns True. Your function definition should look like: question1(s, t) and return a boolean True or False.
 
 #### Solution: 
-###### * An anagram of a string is another string that contains same characters, only the order of characters can be different. For example, “abcd” and “dabc” are anagram of each other.
+##### *An anagram of a string is another string that contains same characters, only the order of characters can be different. For example, “abcd” and “dabc” are anagram of each other.*
 
 In this question, we can check whether two strings are anagram by checking the count of all characters in both string. If all counts are the same, then the two strings are anagram. The question1 function iterates through substrings of s with length len(t) and performs the anagram test until an anagram is found, in which case the function returns true. If the function reaches the end of s without finding an anagram, it returns false.
 
