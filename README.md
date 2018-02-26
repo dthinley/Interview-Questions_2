@@ -18,18 +18,21 @@ Refer: [answer2.py](https://github.com/dthinley/Interview-Questions_2/blob/maste
 {'A': [('B', 2)],
  'B': [('A', 2), ('C', 5)], 
  'C': [('B', 5)]}
+#### Vertices are represented as unique strings. The function definition should be question3(G)
 
-Vertices are represented as unique strings. The function definition should be question3(G)
+#### Solution:  
+Kruskal’s Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree.
 
-Solution: The question3 function is an implementation of Kruslak's algorithm. This sorts the edges by weight, and from lowest to highest weight adds edges to the mst if the edges do not create a cycle. Cycles are detected using the disjoint set/union find algorithm. This algorithm stores each node's value in a set, the sets being stored in a disjoint superset. The algorithm then iterates through edges and checks if the nodes are in the same set. If not, the sets containing the two nodes are combined into a single set with a union operation. If the two nodes are in the same set, then a cycle is detected.
+Algorithm Steps:
+*Sort the graph edges with respect to their weights.
+*Start adding edges to the MST from the edge with the smallest weight until the edge of the largest weight.
+*Only add edges which doesn't form a cycle , edges which connect only disconnected components.
+*So now the question is how to check if 2 vertices are connected or not ?
 
-Complexity analysis:
-Step 1: Generating sets of edges and takes O(E) time and O(E) space.
-Step 2: Sorting the edges takes O(Elog(E)) time and O(E) space
-Step 3: Looping through the edges and adding them to the mst_edges list takes O(E*V) time in the worst case, and O(V) space.
-Steo 4: Converting the mst_edges list into a properly formatted adjacency list dictionary takes O(E) time and O(E) space.
+This could be done using DFS which starts from the first vertex, then check if the second vertex is visited or not. But DFS will make time complexity large as it has an order of 
+O(V+E) where V is the number of vertices, E is the number of edges. So the best solution is "Disjoint Sets": 
 
-Overall the function takes O(E*V) time and O(E) space in the worst case scenarios.
+Disjoint sets are sets whose intersection is the empty set so it means that they don't have any element in common.
 
 #### 4.	Find the least common ancestor between two nodes on a binary search tree. The least common ancestor is the farthest node from the root that is an ancestor of both nodes. For example, the root is a common ancestor of all nodes on the tree, but if both nodes are descendents of the root's left child, then that left child might be the lowest common ancestor. You can assume that both nodes are in the tree, and the tree itself adheres to all BST properties. The function definition should look like question4(T, r, n1, n2), where T is the tree represented as a matrix, where the index of the list is equal to the integer stored in that node and a 1 represents a child node, r is a non-negative integer representing the root, and n1and n2 are non-negative integers representing the two nodes in no particular order. For example, one test case might be
 question4([[0, 1, 0, 0, 0],
