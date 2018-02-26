@@ -21,7 +21,7 @@ Refer: [answer2.py](https://github.com/dthinley/Interview-Questions_2/blob/maste
 #### Vertices are represented as unique strings. The function definition should be question3(G)
 
 #### Solution:  
-This solution can be solved by Kruskal’s Algorithm. *Kruskal’s Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree.
+This solution can be solved by Kruskal’s Algorithm. *Kruskal’s Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree.*
 
 Algorithm Steps:
 ##### 1. Sort the graph edges with respect to their weights.
