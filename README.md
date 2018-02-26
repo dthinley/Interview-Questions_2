@@ -10,9 +10,7 @@ Refer: [answer1.py](https://github.com/dthinley/Interview-Questions_2/blob/maste
 #### 2.	Given a string a, find the longest palindromic substring contained in a. Your function definition should look like question2 (a), and return a string.
 
 #### Solution: 
-In this solution the function iterates every substring of a, checks if each substring is a palindrome. Palindromic substrings are stored in an lps variable, which is updated every time a longer palindrome is found.
-
-The algorithm generates every substring of a with a nested loop which loops through the whole string for each character. Therefore, the time complexity is O(n^2). Because we only store the longest visited palindromic substring as we go, the storage complexity is O(1).
+The solution checks whether each substring of string (a) is a palindrome and records the current longest. The outer for-loop for i in range(len(a)) and inner for-loop for j in range(0, i) takes time complexity of O(n2). The only space needed is to record the current substring and the current longest substring thus the sapce complexity is O(1).
 
 Refer: [answer2.py](https://github.com/dthinley/Interview-Questions_2/blob/master/interviews2.py).
 
