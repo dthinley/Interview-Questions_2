@@ -3,14 +3,14 @@
 #### Solution: 
 ##### *An anagram of a string is another string that contains same characters, only the order of characters can be different. For example, “abcd” and “dabc” are anagram of each other.*
 
-In this question, we can check whether two strings are anagram by checking the count of all characters in both string. If all counts are the same, then the two strings are anagram. The question1 function iterates through substrings of s with length len(t) and performs the anagram test until an anagram is found, in which case the function returns true. If the function reaches the end of s without finding an anagram, it returns false.
+In this question, we can check whether two strings are anagram by checking the count of all characters in both string. If all counts are the same, then the two strings are anagram. The function iterates through substrings of s with length len(t) and performs the anagram test until an anagram is found, in which case the function returns true. If the function reaches the end of s without finding an anagram, it returns false.
 
 Refer: [answer1.py](https://github.com/dthinley/Interview-Questions_2/blob/master/interview1.py).
 
 #### 2.	Given a string a, find the longest palindromic substring contained in a. Your function definition should look like question2 (a), and return a string.
 
 #### Solution: 
-The question2 function iterates every substring of a, checks if each substring is a palindrome. Palindromic substrings are stored in an lps variable, which is updated every time a longer palindrome is found.
+In this solution the function iterates every substring of a, checks if each substring is a palindrome. Palindromic substrings are stored in an lps variable, which is updated every time a longer palindrome is found.
 
 The algorithm generates every substring of a with a nested loop which loops through the whole string for each character. Therefore, the time complexity is O(n^2). Because we only store the longest visited palindromic substring as we go, the storage complexity is O(1).
 
