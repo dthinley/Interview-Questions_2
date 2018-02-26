@@ -24,13 +24,12 @@ Refer: [answer2.py](https://github.com/dthinley/Interview-Questions_2/blob/maste
 Kruskal’s Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree.
 
 Algorithm Steps:
-*Sort the graph edges with respect to their weights.
-*Start adding edges to the MST from the edge with the smallest weight until the edge of the largest weight.
-*Only add edges which doesn't form a cycle , edges which connect only disconnected components.
-*So now the question is how to check if 2 vertices are connected or not ?
+1. *Sort the graph edges with respect to their weights.
+2. *Start adding edges to the MST from the edge with the smallest weight until the edge of the largest weight.
+3. *Only add edges which doesn't form a cycle , edges which connect only disconnected components.
+4. *So now the question is how to check if 2 vertices are connected or not ?
 
-This could be done using DFS which starts from the first vertex, then check if the second vertex is visited or not. But DFS will make time complexity large as it has an order of 
-O(V+E) where V is the number of vertices, E is the number of edges. So the best solution is "Disjoint Sets": 
+This could be done using DFS which starts from the first vertex, then check if the second vertex is visited or not. But DFS will make time complexity large as it has an order of O(V+E) where V is the number of vertices, E is the number of edges. So the best solution is "Disjoint Sets": 
 
 Disjoint sets are sets whose intersection is the empty set so it means that they don't have any element in common.
 
