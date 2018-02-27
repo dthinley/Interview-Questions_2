@@ -1,48 +1,98 @@
-def isGraph(g):
-	if type(g) != dict:
-		#print("input is not dict")
-		return False
-	else:
-		for key in g:
-			if type(key) is not int:
-				return False
-			if isinstance(type(g[key]), list):
-				return False
-			else:
-				for i in range(0, len(g[key])):
-					if type(g[key][i]) is not tuple:
-						return False
-	return True
+def question3(G):
+    
+    # make sure G is dictionary
+    
+    if type(G) != dict:
+        return "Error: G is not dictionary!"
 
-##a nice, reasonably complex graph to test with. Source http://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-mst/
-graph1 = {
-    0:[(1,4),(7,8)],
-    1:[(2,8),(0,4),(7,11)],
-    2:[(1,8),(3,7),(5,4),(8,2)],
-    3:[(2,7),(5,14),(4,9)],
-    4:[(3,9),(5,10)],
-    5:[(4,10),(3,14),(2,4),(6,2)],
-    6:[(8,6),(5,2),(7,1)],
-    7:[(6,1),(8,7),(1,11),(0,8)],
-    8:[(7,7),(6,6),(2,2)]
-}
+    # G have more than one node
+    
+    if len(G) < 2:
+        return "Error: G has not enough vertices to form edges!"
 
-graph1MST = {
-    0:[(1,4),(7,8)],
-    1:[(0,4)],
-    2:[(3,7),(5,4),(8,2)],
-    3:[(2,7),(4,9)],
-    4:[(3,9)],
-    5:[(2,4),(6,2)],
-    6:[(5,2),(7,1)],
-    7:[(6,1),(0,8)],
-    8:[(2,2)]
-}
+    # get a set of vertices
+    
+    vertices = G.keys()
 
-graph2 = {1: [(2, 2)],
- 1: [(1, 2), (3, 5)], 
- 3: [(2, 5)]}
+    # get unique set of edges
+    
+    edges = set()
+    for i in vertices:
+        for j in G[i]:
+            if i > j[0]:
+                edges.add((j[1], j[0], i))
+            elif i < j[0]:
+                edges.add((j[1], i, j[0]))
 
-graph2MST = {1: [(2, 2)],
- 1: [(1, 2), (3, 5)], 
- 3: [(2, 5)]}
+    # sort edges by weight
+    
+    edges = sorted(list(edges))
+
+    # loop through edges and store only the needed ones
+    
+    output_edges = []
+    vertices = [set(i) for i in vertices]
+    for i in edges:
+        # get indices of both vertices
+        for j in xrange(len(vertices)):
+            if i[1] in vertices[j]:
+                i1 = j
+            if i[2] in vertices[j]:
+                i2 = j
+
+        # store union in the smaller index and pop the larger index
+        # also store the edge in output_edges
+        
+        if i1 < i2:
+            vertices[i1] = set.union(vertices[i1], vertices[i2])
+            vertices.pop(i2)
+            output_edges.append(i)
+        if i1 > i2:
+            vertices[i2] = set.union(vertices[i1], vertices[i2])
+            vertices.pop(i1)
+            output_edges.append(i)
+
+        # terminate early when all vertices are in one graph
+        
+        if len(vertices) == 1:
+            break
+            
+    # generate the ouput graph from output_edges
+    
+    output_graph = {}
+    for i in output_edges:
+        if i[1] in output_graph:
+            output_graph[i[1]].append((i[2], i[0]))
+        else:
+            output_graph[i[1]] = [(i[2], i[0])]
+
+        if i[2] in output_graph:
+            output_graph[i[2]].append((i[1], i[0]))
+        else:
+            output_graph[i[2]] = [(i[1], i[0])]
+    return output_graph
+            
+
+def test3():
+    G = {'A': [('B', 2)],
+         'B': [('A', 2), ('C', 5)],
+         'C': [('B', 5)]}
+    print ("\nTesting 3")
+    print ("Edge case (not dictionary):", "Pass" if "Error: G is not dictionary!" == question3(123) else "Fail")
+    print ("Edge case (empty dictionary):", "Pass" if "Error: G has not enough vertices to form edges!" == question3({}) else "Fail")
+    print ("Case (example case):", "Pass" if G == question3(G) else "Fail")
+    G = {'A': [('B', 7), ('D', 5)],
+         'B': [('A', 7), ('C', 8), ('D', 9), ('E', 7)],
+         'C': [('B', 8), ('E', 5)],
+         'D': [('A', 5), ('B', 9), ('E', 15), ('F', 6)],
+         'E': [('B', 7), ('C', 5), ('D', 15), ('F', 8), ('G', 9)],
+         'F': [('D', 6), ('E', 8), ('G', 11)],
+         'G': [('E', 9), ('F', 11)]}
+    H = {'A': [('D', 5), ('B', 7)],
+         'B': [('A', 7), ('E', 7)],
+         'C': [('E', 5)],
+         'D': [('A', 5), ('F', 6)],
+         'E': [('C', 5), ('B', 7), ('G', 9)],
+         'F': [('D', 6)],
+         'G': [('E', 9)]}
+    print ("Case (Wikipedia example):", "Pass" if H == question3(G) else "Fail")
