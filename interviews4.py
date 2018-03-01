@@ -1,42 +1,101 @@
+class Node(object):
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BinaryTree(object):
+    def __init__(self, root):
+        self.root = Node(root)
+
 def question4(T, r, n1, n2):
-  if not T or r is None or n1 is None or n2 is None:
-    return None
-  # if n1 and n2 are on oposite sides from the root
-  if (n1 <= r and n2 >= r) or (n1 >= r and n2 <= r):
-    return r
-  if n1 == n2:
-    return n1
 
-  # n2 should be the most distant from the root
-  if abs(n2 - r) < abs(n1 - r):
-    aux = n1
-    n1 = n2
-    n2 = aux
+	# Build a tree from the matrix
+	bst = build_tree(T, r)
 
-  # go up from n2 until the value crosses n1 
-  lca = n2
-  n2 = get_parent(T, lca)
-  while abs(n2 - r) > abs(n1 - r):
-    lca = n2
-    n2 = get_parent(T, lca)
-    
-  return lca
+	return lca(bst.root, n1, n2)
 
-""" Returns the parent of the specified node or None if it does not have one """
-def get_parent(T, n):
-  for idx, row in enumerate(T):
-    if row[n] == 1:
-      return idx
-  return None
+# Lowest Common Ancestor
+def lca(N, n1, n2):
+	if not N:
+		return None
 
-# Test Case 1
-T = [[0,1,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,0,0,0,1],[0,0,0,0,0]]
-print (question4(T,3,1,4))
+	cur_node = N
 
-# Test Case 2
-T1 = [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,1],[0,1,0,1,0,0,0,0,0],
-     [1,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,1,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,0]]
-print (question4(T1,2,5,3))
+	if cur_node.value > max(n1, n2):
+		return lca(cur_node.left, n1, n2)
+	elif cur_node.value < min(n1, n2):
+		return lca(cur_node.right, n1, n2)
+	else:
+		return cur_node.value
+
+def build_tree(T, r):
+	tree = BinaryTree(r)
+	insert_node(T, tree.root)
+
+	return tree
+
+def insert_node(T, node):
+	stack = [node]
+	while (stack):
+		new_node = None
+		#print node.value
+		for index, e in enumerate(T[node.value]):
+			#print e, index
+			if e and index < node.value:
+				new_node = node.left = Node(index)
+				stack.append(node.left)
+
+				insert_node(T, node.left)
 
 
+			elif e and index > node.value:
+				new_node = node.right = Node(index)
+				stack.append(node.right)
+
+				insert_node(T, node.right)
+
+		return new_node
+		stack.pop()
+	return None
+
+
+
+def test_question4():
+	print ("Result for Question 4:")
+	print (question4([[0, 1, 0, 0, 0],
+	                 [0, 0, 0, 0, 0],
+	                 [0, 0, 0, 0, 0],
+                     [1, 0, 0, 0, 1],
+                     [0, 0, 0, 0, 0]],
+                    3,
+                    1,
+                    4))
+	
+	print ('Testing BST with LST to the right of root')
+	print (question4([[0, 1, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [1, 0, 0, 0, 0, 1, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 1, 0, 1, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0]],
+                    3,
+                    4,
+                    6))
+
+	print ('Testing BST with LST to the left of root')
+	print (question4([[0, 0, 0, 0, 0, 0, 0, 0],
+                     [1, 0, 1, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 1, 0, 0, 0, 1, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 1, 0, 1, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0, 0, 0]],
+                    3,
+                    0,
+                    1))
+
+test_question4()
