@@ -7,6 +7,8 @@ In this question, we can check whether two strings are anagram by checking the c
 
 Refer: [answer1.py](https://github.com/dthinley/Interview-Questions_2/blob/master/interview1.py).
 
+Resources: https://www.geeksforgeeks.org/given-two-strings-find-first-string-subsequence-second/
+
 #### 2.	Given a string a, find the longest palindromic substring contained in a. Your function definition should look like question2 (a), and return a string.
 
 #### Solution: 
