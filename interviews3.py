@@ -1,6 +1,4 @@
 def question3(G):
-    # using Kruskal's algorithm
-
     if type(G) != dict:
         return 'The input is not a dictionary. Please provide a dictionary.'
 
