@@ -55,6 +55,8 @@ This problem can be solved using a linked list with two pointer variables.
 
 The time complexity is O(n), with a space complexity of O(n). 
 
+Refer: [answer5.py](https://github.com/dthinley/Interview-Questions_2/blob/master/interview5.py).
+
 Resource: https://www.youtube.com/watch?v=5BpQ5m0K_t4&t=339s
 
 
