@@ -1,84 +1,53 @@
-def findChildren(n):
-	children = []
-	x = 0
-	for each in n:
-		if each == 1:
-			children.append(x)
-		x +=1 
-	return children
-print("findChildren: "+str(findChildren([0,0,1,1])))
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-def findRight(n):
-	children = findChildren(n)
-	return children[-1]
+class LinkedList:
 
-def findLeft(n):
-	children = findChildren(n)
-	return children[0]
+   class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-print("Find Right: "+ str(findRight([0,0,1,1])))
-print("Find Left: "+ str(findLeft([0,0,1,1])))
+class LinkedList:
 
-def question4(m, r, n1, n2):
-	nodeIndex = r
-	root = m[nodeIndex]
-	# make sure n1 and n2 are integers
-	if type(n1) != int:
-		return "n1 not int"
-	if type(n2) != int:
-		return "n2 not int"
-	#Traverse tree starting at root
-	current_node = root
-	print("Node: "+str(current_node))
-	while findLeft(current_node) != None or findRight(current_node) != None: 
-		try:
-			# if the current node is greater than both n1 and n2, go left
-			if nodeIndex > n1 and nodeIndex > n2:
-				nodeIndex = findLeft(current_node)
-				current_node = m[nodeIndex]
-			# if the current node is less than both n1 and n2, go left
-			elif nodeIndex < n1 and nodeIndex < n2:
-				nodeIndex = findRight(current_node)
-				current_node = m[nodeIndex]
-			# If the current node is between n1 and n2, the current node is the lca
-			else:
-				return nodeIndex
-		except:
-			break
-	return nodeIndex
-####Chain together node objects to construct a tree for test purposes
+    def __init__(self):
+        self.head = None
 
-def test4():
-	print("Q4 Test 1: LCA is root (should return 3)"+"\n"+str(question4([[0, 1, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[1, 0, 0, 0, 1],
-		[0, 0, 0, 0, 0]],
-		3,
-		1,
-		4)))
+    def push(self, new_data):
+        new_node = Node(new_data)
+        new_node.next = self.head
+        self.head = new_node
 
-	print("Q4 Test 2: LCA is left of root (should return 2) "+"\n"+str(question4([
-		[0,0,0,0,0,0],
-		[1,0,0,0,0,0],
-		[0,1,0,1,0,0],
-		[0,0,0,0,0,0],
-		[0,0,1,0,0,1],
-		[0,0,0,0,0,0]],
-		4,
-		1,
-		3)))
+    def question5(self, m):
+        p1 = self.head
+        p2 = self.head
 
-	print("Q4 Test 3: LCA is right of root (should return 4): "+"\n"+str(question4([
-		[0,0,0,0,0,0],
-		[1,0,0,0,0,0],
-		[0,0,0,0,0,0],
-		[0,1,0,0,1,0],
-		[0,0,1,0,0,1],
-		[0,0,0,0,0,0]
-		],
-		3,
-		4,
-		5)))
 
-test4()
+        for i in range(m):
+            if (p1 == None):
+                return None
+            p1 = p1.next
+        while (p1 != None):
+            p1 = p1.next
+            p2 = p2.next
+
+        return p2.data
+
+
+
+ll = LinkedList()
+ll.push("A")
+ll.push("B")
+ll.push("C")
+ll.push("D")
+ll.push("E")
+ll.push("F")
+
+def main():
+
+    print (LinkedList.question5(ll, 3))
+
+if __name__ == "__main__":
+    main()
