@@ -1,8 +1,8 @@
 def question3(G):
     if type(G) != dict:
-        return 'The input is not a dictionary. Please provide a dictionary.'
+        return 'Error: Input is not a dictionary'
 
-    # get the keys/vertices
+    # get a set of vertices
     keys = G.keys()
 
     # get unique set of edges
@@ -17,7 +17,7 @@ def question3(G):
     # sort the edges by weight and make it a list
     edges = sorted(list(edges))
 
-    # loop through the edges and store the edges necessary
+    # loop through the edges and store the needed edges 
     output_edges = []
     keys = [set(i) for i in keys]
     for i in edges:
@@ -39,7 +39,7 @@ def question3(G):
             keys.pop(i1)
             output_edges.append(i)
 
-        # terminate early when all vertices are in one graph
+        # if all vertices are in one graph, terminate
         if len(keys) == 1:
             break
             
@@ -61,4 +61,3 @@ def question3(G):
 # Test Case 
 G = {'A':[('B',2)],'B':[('A',2),('C',5)],'C':[('B',5)]}
 print (question3(G))
-
