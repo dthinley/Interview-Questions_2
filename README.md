@@ -39,9 +39,9 @@ question4([[0, 1, 0, 0, 0],
 and the answer would be 3.
 
 #### Solution: 
-This solution represents the bst as a series of nodes with values, and left/right nodes which are initialized to None. A bst is then created by stringing together node objects and assigning left and right values. Starting at the root, the question4 function checks each node to see if the value is higher or lower than both input nodes. If value is higher than both, the function proceeds to the left node, if lower the right. If the node's value is between the values of node1 and node2, then that node is the lca of node1 and node2
+First convert the adjacency matrix to a binary search tree. Then traverse it looking at each node value and going down the left branch, if both n1 and n2 are smaller than the node value or down the right branch if both n1 and n2 are larger than the node value. If it is not the case that both n1 and n2 are larger or smaller than the current node value, we know we have reached the lowest common ancestor and return its node value. 
 
-Because this algorithm only needs to visit one node per level of the tree, the runtime complexity is proportional to the height of the tree, i.e. O(log(n)). Because we have to store the tree, the space complexity is O(n).
+This implementation in it’s worst case traverses every level of the tree once. So the time complexity is O(log(n)). We use a tree as our data structure so the space complexity will be O(|V|).
 
 Refer: [answer4.py](https://github.com/dthinley/Interview-Questions_2/blob/master/interviews4.py).
 
