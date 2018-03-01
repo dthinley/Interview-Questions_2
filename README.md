@@ -45,8 +45,16 @@ class Node(object):
     self.data = data
     self.next = None
 
-Solution: The findLength helper function iterates through the linked list, incrementing a counter, until the current node has no "next" value, returning the counter. The question5 function iterates through the linked list, incrementing a counter, until the counter value reaches lengthList - m - 1, returning the current node.
+#### Solution: 
 
-Because the function iterates through the linked list, the time complexity is O(n). Because we only have to store the current node and the counter value at any given time, the space complexity is O(1).
+This problem can be solved using a linked list with two pointer variables. 
+1. Initialize the pointers P & F to the head of the list.
+2. Move forward the 'F' pointer by 'n-1' position.
+3. Move forward both pointer by 1 postion until end of the list.
+4. Once the end of the list reach the loop breaks.
+
+The time complexity is O(n), with a space complexity of O(n). 
+
+Resource: https://www.youtube.com/watch?v=5BpQ5m0K_t4&t=339s
 
 
