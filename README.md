@@ -66,3 +66,10 @@ Refer: [answer5.py](https://github.com/dthinley/Interview-Questions_2/blob/maste
 Resource: https://www.youtube.com/watch?v=5BpQ5m0K_t4&t=339s
 
 
+Resources: 
+https://classroom.udacity.com/nanodegrees/nd004/parts/a98f5fbf-0b2a-457d-8f06-7025979cf2bc
+https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
+https://www.youtube.com/watch?v=5BpQ5m0K_t4
+https://www.youtube.com/watch?v=5BpQ5m0K_t4&t=339s
+https://discussions.udacity.com/c/careers-interview-algorithms
+
