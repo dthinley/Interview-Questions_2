@@ -58,6 +58,29 @@ def question3(G):
             
     return output_graph
 
-# Test Case 
-G = {'A':[('B',2)],'B':[('A',2),('C',5)],'C':[('B',5)]}
-print (question3(G))
+def test3():
+    print "Test Case 1 - Edge Case"
+    print "Input - not dictionary"
+    print "Output - "+str(question3(123))
+    
+    print "Test Case 2 - Edge Case"
+    print "Input - not enogh edges"
+    print "Output - "+str(question3({}))
+    
+    G = {'A': [('B', 1), ('C', 7)],
+     'B': [('A', 1), ('C', 5), ('D', 3), ('E', 4)],
+     'C': [('A', 7), ('B', 5), ('D', 6)],
+     'D': [('B', 3), ('C', 6), ('E', 2)],
+     'E': [('B', 4), ('D', 2)],
+    }
+    
+    print "Test Case 3"
+    print "Input - G"
+    print "Output - "+str(question3(G))
+    
+    G = {'A': [('B', 1), ('C', 1)],
+     'B': [('A', 1), ('C', 1)],
+     'C': [('A', 1), ('B', 1)],
+    }
+    
+test3()
