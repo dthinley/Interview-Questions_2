@@ -15,3 +15,6 @@ def question2(a):
 
 # Test case.
 print (question2("raca"))
+print (question2("helololhe"))
+print (question2("jiwe234565432nnnw"))
+
